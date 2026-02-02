@@ -21,4 +21,32 @@ Select id,first_name,null, 'unknown' from customers;
 select * from customers;
 
 -- Update: Update existing data
--- Syntax: Update table_name set column1 = value1, column2 = value2;
+-- Syntax: Update table_name set column1 = value1, column2 = value2 where <conditon>;
+-- Note: Always use where to avoid updating all rows unintentionally
+
+-- Change the score of the customer 6 to 0
+Update customers set score = 0 where id = 6;
+-- Caution: Without a where, all rows will be updated
+
+select * from customers;
+
+-- Change the score of customer 10 to 0 and update the country to UK
+Update customers set score = 0, country = 'UK' where id = 10;
+
+-- Update all customers with a NULL by setting their score to 0
+Update customers set score = 0 where score is null;
+
+
+-- DELETE
+-- Delete: Delete from table_name where <condition>
+-- Note: Always use where to avoid deleting all rows unintentionally
+-- Delete all customers with an ID greater than 5
+Select * from customers where id > 5;
+Delete from customers where id > 5;
+
+-- Best Practice: Check with select before running delete to avoid deleting the wrong data
+
+-- Delete all data from table persons
+Truncate table persons;
+
+-- Truncate: clears the whole table at once without checking or logging
